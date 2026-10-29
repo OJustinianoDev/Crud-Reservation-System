@@ -81,14 +81,17 @@ public class Main {
                     texto = input.nextLine();
                     LocalDateTime saida = LocalDateTime.parse(texto, formato);
 
-                    int resultado = reservaDAO.remarcar(idReserva, entrada, saida);
-
-                    if (resultado == 1) {
-                        System.out.println("Reserva remarcada com sucesso!");
+                    if (!saida.isAfter(entrada)) {
+                        System.out.println("A saída precisa ser depois da entrada!");
                     } else {
-                        System.out.println("Reserva não encontrada!");
-                    }
+                        int resultado = reservaDAO.remarcar(idReserva, entrada, saida);
 
+                        if (resultado == 1) {
+                            System.out.println("Reserva remarcada com sucesso!");
+                        } else {
+                            System.out.println("Reserva não encontrada!");
+                        }
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("ID inválido! Digite apenas números");
                 } catch (DateTimeException e) {
@@ -137,10 +140,14 @@ public class Main {
                     texto = input.nextLine();
                     LocalDateTime saida = LocalDateTime.parse(texto, formato);
 
-                    Reserva reserva = new Reserva(0, cliente.getId(), entrada, saida, descricaoReserva, tipoReserva);
-                    reservaDAO.cadastrar(reserva);
+                    if (!saida.isAfter(entrada)) {
+                        System.out.println("A saída precisa ser depois da entrada!");
+                    } else {
+                        Reserva reserva = new Reserva(0, cliente.getId(), entrada, saida, descricaoReserva, tipoReserva);
+                        reservaDAO.cadastrar(reserva);
 
-                    System.out.println("Reserva criada com sucesso!");
+                        System.out.println("Reserva criada com sucesso!");
+                    }
 
                 } catch (DateTimeException e) {
                     System.out.println("Data inválida! Use o formato dd/MM/yyyy HH:mm");
