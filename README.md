@@ -1,10 +1,8 @@
 # Crud-Reservation-System
 
-Console reservation system built with Java and a MySQL database.
-Evolution of [Simple-Reservation-System](https://github.com/OJustinianoDev/Simple-Reservation-System), which stored only one reservation in memory.
+Console reservation system built with Java and a MySQL database. Evolution of `Simple-Reservation-System`, which stored only one reservation in memory.
 
 ## Features
-
 - List reservations
 - Cancel a reservation
 - Reschedule a reservation
@@ -12,7 +10,6 @@ Evolution of [Simple-Reservation-System](https://github.com/OJustinianoDev/Simpl
 - Invalid input handling (letters instead of numbers, wrong date format) and date validation (check-out must be after check-in)
 
 ## Technologies
-
 - Java
 - MySQL
 - JDBC (MySQL Connector/J 8.4.0)
@@ -52,17 +49,3 @@ CREATE TABLE reserva (
     PRIMARY KEY (id),
     FOREIGN KEY (id_cliente) REFERENCES cliente(id) ON DELETE CASCADE
 );
-```
-
-## How to Run
-
-1. Copy `db.properties.example` to `db.properties` (in the project root).
-2. Fill in the URL, user and password of your MySQL in `db.properties`.
-3. Add the driver `com.mysql:mysql-connector-j:8.4.0` to the project.
-4. Run the `Main` class.
-
-> The `db.properties` file contains the database password and is listed in `.gitignore`: it is not sent to GitHub.
-
-## Author
-
-Cauã Justiniano
